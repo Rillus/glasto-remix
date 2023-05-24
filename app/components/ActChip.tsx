@@ -3,7 +3,7 @@ import urlHelper from "~/helpers/url";
 
 export function ActChip(props: { name: string, id?: string }) {
   return (
-    <span className="ActChip">&nbsp;
+    <span className="ActChip">
       <Link to={`/acts/${urlHelper.safeName(props.name)}`}>{props.name}</Link>
     </span>
   );

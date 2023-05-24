@@ -17,7 +17,6 @@ export const loader = async () => {
   });
 
   const allActs = await db.act.findMany({
-    take: 20,
     include: {
       location: true
     },
@@ -34,11 +33,11 @@ export default function ActsIndexRoute() {
 
   return (
     <div>
-      <p>Here's a selection of random acts you may not have seen:</p>
-      <ActGrid data={data.randomAct}></ActGrid>
+      {/*<p>Here's a selection of random acts you may not have seen:</p>*/}
+      {/*<ActGrid data={data.randomAct}></ActGrid>*/}
 
-      <p>Here's all acts alphabetically:</p>
-      <ActGrid data={data.acts}></ActGrid>
+      <p>Here's some acts alphabetically (pagination coming soon):</p>
+      <ActGrid data={data.acts} options={{showStages: true}}></ActGrid>
     </div>
   );
 }

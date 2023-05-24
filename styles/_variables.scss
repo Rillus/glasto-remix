@@ -18,6 +18,8 @@ $dark: $outer-space;
 $button-contrast: $outer-space;
 
 $spacer: 12px;
+$light-gradient: linear-gradient(5deg, rgba(255,255,255,0.1) 2%, rgba(255,255,255,0));
+$light-header-gradient: linear-gradient(-5deg, rgba(255,255,255,0.1) 2%, rgba(255,255,255,0));
 
 :root {
   --background: #{$white};

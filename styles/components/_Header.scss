@@ -1,3 +1,5 @@
+@import "../variables";
+
 .Header {
   margin-bottom: 0;
   line-height: 39px;
@@ -7,7 +9,8 @@
   display: flex;
 
   .dark & {
-    background: url('/images/pyramid-sunset-blur-dark.jpg') no-repeat top center fixed var(--background);
+    background: $light-header-gradient, url('/images/pyramid-sunset-blur-dark.jpg') no-repeat top center fixed var(--background);
+    background-size: cover;
   }
 
   h3 {
