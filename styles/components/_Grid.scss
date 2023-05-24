@@ -1,0 +1,17 @@
+@import "../variables";
+
+.Grid {
+  display: grid;
+
+  &-row {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 3fr 2fr;
+  }
+
+  &-date {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+  }
+}
