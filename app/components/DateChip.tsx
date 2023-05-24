@@ -17,7 +17,7 @@ export function DateChip(props: { start: Date, end: Date }) {
       <span className="DateChip-until"> &rarr; </span>
       {startDay !== endDay &&
         dayChip(endDay)
-      }
+      }&nbsp;
       <em className="DateChip-time">{endDate.toLocaleTimeString('en', {hour: 'numeric', minute: 'numeric'})}</em>
       &nbsp;
     </span>

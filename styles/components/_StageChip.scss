@@ -23,6 +23,8 @@
     h1 & {
       padding: #{$spacer} #{$spacer * 1.5};
       margin: auto;
+      border-width: 2px;
+      border-radius: 7px;
     }
 
     &--1 {

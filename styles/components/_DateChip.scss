@@ -40,7 +40,14 @@
   }
 
   &-time {
-
+    padding: #{$spacer / 4} #{$spacer / 2};
+    border-radius: 5px;
+    border: 1px solid var(--currentContrast);
+    display: inline-block;
+    width: 70px;
+    line-height: 30px;
+    text-align: center;
+    margin: $spacer/2 0;
   }
 
   &-until {

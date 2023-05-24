@@ -2,6 +2,7 @@ import { db } from "~/utils/db.server";
 import {Link, useLoaderData} from "@remix-run/react";
 import {DateChip} from "~/components/DateChip";
 import {StageChip} from "~/components/StageChip";
+import {ActGrid} from "~/components/ActGrid";
 import urlHelper from "~/helpers/url";
 
 export const loader = async () => {
@@ -9,13 +10,23 @@ export const loader = async () => {
   const randomRowNumber = Math.floor(Math.random() * count);
   const randomAct = await db.act.findMany({
     skip: randomRowNumber,
-    take: 1,
+    take: 5,
     include: {
       location: true
     }
   });
 
-  return {randomAct: randomAct[0]};
+  const allActs = await db.act.findMany({
+    take: 20,
+    include: {
+      location: true
+    },
+    orderBy: {
+      name: 'asc'
+    }
+  });
+
+  return {randomAct: randomAct, acts: allActs};
 }
 
 export default function ActsIndexRoute() {
@@ -23,12 +34,11 @@ export default function ActsIndexRoute() {
 
   return (
     <div>
-      <p>Here's a random act:</p>
-      <p>
-        <Link to={urlHelper.safeName(data.randomAct.name)}>{data.randomAct.name}</Link> -
-        <DateChip start={data.randomAct.start} end={data.randomAct.end} />
-        <StageChip name={data.randomAct.location.name} id={data.randomAct.location.id} />
-      </p>
+      <p>Here's a selection of random acts you may not have seen:</p>
+      <ActGrid data={data.randomAct}></ActGrid>
+
+      <p>Here's all acts alphabetically:</p>
+      <ActGrid data={data.acts}></ActGrid>
     </div>
   );
 }

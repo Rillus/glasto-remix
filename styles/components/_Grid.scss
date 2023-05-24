@@ -6,12 +6,10 @@
   &-row {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 3fr 3fr;
   }
 
-  &-date {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 1fr;
+  .DateChip {
+    justify-self: end;
   }
 }

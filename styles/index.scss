@@ -1,4 +1,5 @@
 @import "variables.scss";
+@import "components/ActChip";
 @import "components/DateChip";
 @import "components/Grid";
 @import "components/Header";
@@ -54,6 +55,7 @@ body {
       background: url('/images/pyramid-sunset-blur.jpg') no-repeat bottom center fixed var(--background);
       .dark & {
         background: url('/images/pyramid-sunset-blur-dark.jpg') no-repeat bottom center fixed var(--background);
+        background-size: contain;
       }
         margin:0;
         padding:0 10px;

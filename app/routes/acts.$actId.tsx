@@ -23,7 +23,7 @@ export const loader = async ({params}:Args) => {
     }
   });
 
-  if (!actItem) {
+  if (!actItem || actItem.length === 0) {
     return json({message: 'Act not found', status: 404});
   }
 

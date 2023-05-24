@@ -1,12 +1,12 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import {Link, useLoaderData} from "@remix-run/react";
+import {useLoaderData} from "@remix-run/react";
 import type {Params} from "@remix-run/react";
 import { db } from "~/utils/db.server";
 import type {ActionFunctionArgs, ParamParseKey} from "@remix-run/router";
-import {DateChip} from "~/components/DateChip";
-import urlHelper from "~/helpers/url";
 import {StageChip} from "~/components/StageChip";
+import {ActGrid} from "~/components/ActGrid";
+import assert from "assert";
 
 const PathNames = {
   acts: '/acts/:stageId',
@@ -17,6 +17,7 @@ interface Args extends ActionFunctionArgs {
 }
 
 export const loader = async ({params}:Args) => {
+  assert(params.stageId, 'Stage ID is required')
   const nameToMatch = params.stageId.replace(/-+/g, ' ');
   const stage = await db.location.findFirst({
     include: {
@@ -41,30 +42,13 @@ export const loader = async ({params}:Args) => {
   return json({stage});
 };
 
-function Grid(props: { data: any[] }) {
-  console.log(props.data);
-  return (
-    <div className="Grid">
-      {props.data.map((act) => (
-        <div className="Grid-row" key={act.id}>
-          <Link to={`/acts/${urlHelper.safeName(act.name)}`}>{act.name}</Link>
-          <DateChip start={act.start} end={act.end} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function StageRoute() {
   const data = useLoaderData<typeof loader>();
 
   if (data.status === 404) {
     return (
       <div>
-        <h1>Act not found</h1>
-        <p>
-          <button onClick={() => history.goBack()}>Go back</button>
-        </p>
+        <h1>Stage not found</h1>
       </div>
     );
   }
@@ -75,7 +59,7 @@ export default function StageRoute() {
         <StageChip name={data.stage.name} id={data.stage.id} />
       </h1>
       <p>{data.stage.description}</p>
-      <Grid data={data.stage.Act}/>
+      <ActGrid data={data.stage.Act}/>
     </div>
   );
 }
